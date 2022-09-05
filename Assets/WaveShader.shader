@@ -47,7 +47,8 @@ Shader "Unlit/WaveShader"
 				//Pregunta 5.1: float4 displacement = float4(0.0f, 0.5f, 0.0f, 0.0f) * sin(v.vertex.x + _Time.y);
 				//Pregunta 5.2: float4 displacement = float4(0.0f, 0.5f, 0.0f, 0.0f) * sin(v.vertex.x + (_Time.y*4));
 				//Pregunta 5.3: float4 displacement = float4(0.0f, 0.5f, 0.0f, 0.0f) * sin(v.vertex.x + pow(_Time.y, 2));
-				float4 displacement = float4(0.0f, 0.5f, 0.0f, 0.0f) * sin(v.vertex.x + (_Time.y*4));
+				//float4 displacement = float4(0.0f, 0.5f, 0.0f, 0.0f) * sin(v.vertex.x + (_Time.y*4));
+				float4 displacement = float4(0.0f, 0.0f, 0.0f, 0.0f);
 				v.vertex += displacement;
 				
 
@@ -55,7 +56,7 @@ Shader "Unlit/WaveShader"
 
 				float4 viewSpace = mul(UNITY_MATRIX_MV, v.vertex);
 
-				viewSpace.y += sin(_Time.y);
+				viewSpace.y += sin(v.vertex.y + viewSpace);
 
 				o.vertex = mul(UNITY_MATRIX_P, viewSpace);
 				o.uv = v.uv;
