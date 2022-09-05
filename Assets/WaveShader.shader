@@ -56,7 +56,10 @@ Shader "Unlit/WaveShader"
 
 				float4 viewSpace = mul(UNITY_MATRIX_MV, v.vertex);
 
+				//viewSpace.y += sin(_Time.y);
+
 				viewSpace.y += sin(v.vertex.y + viewSpace);
+				
 
 				o.vertex = mul(UNITY_MATRIX_P, viewSpace);
 				o.uv = v.uv;
